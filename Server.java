@@ -14,7 +14,7 @@ public class Server implements Runnable {
 
   //create the server socket and start listening for client connections
   throws Exception {
-    DatagramSocket serverSocket = new DatagramSocket(1234);
+    DatagramSocket serverSocket = new DatagramSocket(1234); //Create the socket
     System.out.println("Waiting for Client connection...");
     new Thread(new Server(serverSocket)).start(); //Start the reading thread
   }
@@ -26,12 +26,12 @@ public class Server implements Runnable {
 
       while(true){
         DatagramPacket receivedPacket = new DatagramPacket(car, car.length);
-        serverSocket.receive(receivedPacket);
-        String data = new String(receivedPacket.getData());
+        serverSocket.receive(receivedPacket); //Read a new packet
+        String data = new String(receivedPacket.getData()); //Get the character in the packet
         System.out.println(data);
         car = data.getBytes();
         DatagramPacket sendPacket = new DatagramPacket(car, car.length, receivedPacket.getAddress(), receivedPacket.getPort());
-        serverSocket.send(sendPacket);
+        serverSocket.send(sendPacket); //Send back the character read
       }
     }catch(IOException e){
       System.out.println(e);
