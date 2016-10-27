@@ -2,10 +2,18 @@ COMPIL_SERVER = javac
 FLAG_SERVER =
 NAME_SERVER = Server
 
-all:$(NAME_SERVER)
+COMPIL_CLIENT = javac
+FLAG_CLIENT =
+NAME_CLIENT = Client
 
-$(NAME_SERVER): $(NAME_SERVER).java
-	$(COMPIL_SERVER) $(FLAG_SERVER) $(NAME_SERVER).java
+all: $(NAME_SERVER).class $(NAME_CLIENT).class
+
+$(NAME_SERVER).class: $(NAME_SERVER).java
+		$(COMPIL_SERVER) $(FLAG_SERVER) $(NAME_SERVER).java
+
+$(NAME_CLIENT).class: $(NAME_CLIENT).java
+	$(COMPIL_CLIENT) $(FLAG_CLIENT) $(NAME_CLIENT).java
 
 clean:
 	rm $(NAME_SERVER).class
+	rm $(NAME_CLIENT).class
